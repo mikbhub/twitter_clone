@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,15 @@ WSGI_APPLICATION = 'twitter.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'HOST': '127.0.0.1',
+        'NAME': 'twitter_db',
+        'ENGINE': 'django.db.backends.mysql',  # pip install mysqlclient. mysqlconnector does not work with django 1.11
+        'USER': 'root',
+        'PASSWORD': 'coderslab',
+        'OPTIONS': {
+                    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                    'autocommit': True,
+        },
     }
 }
 
